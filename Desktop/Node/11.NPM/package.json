@@ -1,0 +1,25 @@
+{
+  "name": "rath-package",
+  "version": "1.0.0",
+  "description": "first package ",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev" : "nodemon index.js" 
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/@bharathkumark7"
+  },
+  "keywords": [
+    "first",
+    "node",
+    "javascript"
+  ],
+  "author": "bharath",
+  "license": "MIT",
+  "dependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
