@@ -1,20 +1,20 @@
 import express from "express";
-const router = express.Router();
 
-router.get("/all", (_req,res) => {
-  res.send("All Students")
-}); 
+const allstudents = (_req,_res) => {
+  _res.send("All Students");
 
-router.post("/create", (_req,res) => {
-  res.send("Sign in New Student");
-});
+}
 
-router.put("/update", (_req,res) => {
-  res.send("Update Student Id");
-});
+const newstudents = (_req,res) => {
+  res.send("Create new user");
+}
 
-router.delete("/delete", (_req,res) => {
-  res.send("Remove student From the DB.");
-});
+const updatestudent = (_req,res) => {
+  res.send("Update User");
+}
 
-export default router;
+const deletestudent = (_req,res) => {
+  res.send("Delete User");
+}
+
+export {allstudents, newstudents, updatestudent, deletestudent };
