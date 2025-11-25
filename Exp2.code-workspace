@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../Router_params"
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}
