@@ -1,15 +1,11 @@
-import express from 'express';
-
+import express from "express";  
+import students from './routes/student.js';
+import teacher from './routes/teachers.js';
 const app = express();
 
-// Router params
-// app.get('/student/delete/:id', (_req,res) => {
-  app.get('/ecom/products/iphone/:model', (_req,res) => {
-    const{model} = _req.params;
-  // res.send("iphone",_req.params.model);
-  res.send(`iphone${model} pro max` )
-})
-app.listen(8000, () => console.log("Server Up!"));
-  
 
 
+app.use('/Teachers', teacher);
+app.use('/students', students);
+
+app.listen(8000, ()=> console.log("Server Up!"));
