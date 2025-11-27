@@ -1,19 +1,18 @@
 import express from "express";
+const router = express.Router();
 
-const allstudents = (_req,res) => {
-  res.send("All Students")
-}; 
 
-const newstudent  = (_req,res) => {
-  res.send("Sign in New Student");
-};
+import { 
+  allstudents, 
+  newstudent, 
+  updatestudent, 
+  deletestudent,
+} from "../controllers/student.js";
 
-const updatestudent = (_req,res) => {
-  res.send("Update Student Id");
-};
+router.get("/all", allstudents); 
+router.post("/create", newstudent );
+router.put("/update", updatestudent), 
+router.delete("/delete", deletestudent);
 
-const deletestudent = (_req,res) => {
-  res.send("Remove student From the DB.");
-};
 
-export { allstudents, newstudent, updatestudent, deletestudent };
+export default router;
