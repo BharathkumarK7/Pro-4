@@ -1,12 +1,9 @@
-import express from 'express';
-import products from './products.js';
-
+import express from "express";  
+import students from './routes/student.js'
 
 const app = express();
 
-app.get('/products', (_req,res) => {
-  res.json(products)
-});
 
+app.use('/students', students);
 
-app.listen(8000, () => console.log("Server Up!"));
+app.listen(8000, ()=> console.log("Server Up!"));
