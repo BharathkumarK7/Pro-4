@@ -17,7 +17,6 @@ const CopyInput = () => {
 
     <input type="text" value = {inputValue} onChange = {(e) => setInputValue(e.target.value)} />
     <button onClick={handleCopy}>Copy</button>
-    <PopupContent copied={copied}/>
 
     </div>
   )
