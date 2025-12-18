@@ -1,21 +1,31 @@
-import { useState } from 'react'
-import Counter from './comps/Counter'
-import Profile from './comps/Profile.jsx'
-import Shoppinglist from './comps/Shoppinglist.jsx'
-import CopyInput from './comps/CopyInput.jsx' 
-import PopupContent from './comps/PopupContent.jsx'
-function App() {
-  const [count, setCount] = useState(0)
+import { useState, useEffect } from 'react'
+
+const App = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    async function getData() {
+      const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+  const data = await response.json();
+  if (data && data.length) setData(data);
+ }  
+    getData();
+  }, []);
 
   return (
-    <>
-      <h1>Hello</h1> 
-      <Counter />
-      <Profile />
-      <Shoppinglist />
-      <CopyInput />
-        </>
-  )
-}
+    <div>App
 
-export default App
+      <ul>
+        {data.map(todo => (
+        <section key = {todo.id}>
+        
+        <li >{todo.title}</li>
+          <li >{todo.body}</li>
+          </section>
+        ))}
+      </ul>
+    </div>
+  )
+};
+
+export default App;
