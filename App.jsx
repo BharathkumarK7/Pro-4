@@ -1,31 +1,19 @@
-import { useState, useEffect } from 'react'
+import { createContext } from 'react'
+import CompA from './comps/CompA' 
+
+export const Data = createContext();
+
+
 
 const App = () => {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    async function getData() {
-      const response = await fetch("https://jsonplaceholder.typicode.com/posts");
-  const data = await response.json();
-  if (data && data.length) setData(data);
- }  
-    getData();
-  }, []);
-
+  const name = "Bharath"
   return (
-    <div>App
-
-      <ul>
-        {data.map(todo => (
-        <section key = {todo.id}>
-        
-        <li >{todo.title}</li>
-          <li >{todo.body}</li>
-          </section>
-        ))}
-      </ul>
+    <div>
+      <Data.Provider value = {name}>
+        <CompA />
+      </Data.Provider>
     </div>
   )
-};
+}
 
-export default App;
+export default App;  
