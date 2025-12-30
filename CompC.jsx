@@ -1,15 +1,15 @@
-import { Data } from "../App"
+import {useContext} from "react";
+
+import { Data, Data1 } from "../App"
 
 
-const CompC = ({name}) => {
+const CompC = () => {
+  const userName = useContext(Data);
+  const age = useContext(Data1);
+  
+
   return (
-    <Data.Consumer>
-      {
-        (name) => {
-          return <h1>Comp C Name is {name}</h1>
-        }
-      }
-    </Data.Consumer>
+    <h1>My name {userName} and age is {age}</h1>
   )
 }
 
