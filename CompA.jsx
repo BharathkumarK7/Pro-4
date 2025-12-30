@@ -1,7 +1,7 @@
 const CompA = () => {
   return (
     <div>
-      s
+    <h1>Hello</h1>
     </div>
   )
 }
