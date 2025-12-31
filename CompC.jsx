@@ -1,15 +1,13 @@
-import {useContext} from "react";
-
-import { Data, Data1 } from "../App"
+import React, { useContext } from "react";
+import { DataContext } from "../App";
 
 
 const CompC = () => {
-  const userName = useContext(Data);
-  const age = useContext(Data1);
-  
-
+  const name = useContext(DataContext);
   return (
-    <h1>My name {userName} and age is {age}</h1>
+    <div>CompC <br />
+      Hello I'm {name}
+    </div>
   )
 }
 
