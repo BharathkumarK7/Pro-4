@@ -1,19 +1,21 @@
-import { createContext } from 'react'
-import CompA from './comps/CompA' 
+// App.jsx
+import { createContext } from "react";
+import React from "react";
+import CompA from "./comps/CompA";
 
-export const Data = createContext();
-
-
+export const DataContext = createContext();
 
 const App = () => {
-  const name = "Bharath"
-  return (
-    <div>
-      <Data.Provider value = {name}>
-        <CompA />
-      </Data.Provider>
-    </div>
-  )
-}
+  const name = "Bharath";
 
-export default App;  
+  return (
+    <DataContext.Provider value={name}>
+      <div>
+        <h1>App Component</h1>
+        <CompA />
+      </div>
+    </DataContext.Provider>
+  );
+};
+
+export default App;
