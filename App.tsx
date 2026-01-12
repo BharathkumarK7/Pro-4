@@ -1,4 +1,5 @@
 import React from 'react';
+import User from './Comps/user';
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
               It is a platform for people to gather online together for
               thrilling fun.
             </li>
+            <User />
             <li>
               This creates a space for people to come together and have fun
               without any limitations.
