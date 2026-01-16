@@ -1,54 +1,93 @@
-import React from 'react';
-import User from './Comps/user';
+import { useState } from 'react';
 
-const App = () => {
+function App() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    dsaLevel: 'beginner',
+  });
+  const [status, setstatus] = useState('');
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch('http://localhost:5000/api/admission', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (res.ok) {
+        setstatus('Admission form submitted successfully');
+        setFormData({ name: '', email: '', phone: '', dsaLevel: 'beginner' });
+      } else {
+        setstatus('Submissionfailed.');
+      }
+    } catch (err) {
+      setstatus('Error: ' + err.message);
+    }
+  };
   return (
-    <div>
-      App
-      <section>
-        <h1>Let's Make a Webpage for the Arena. </h1>
-        <h2>
-          It provides Information about the Arena. The platform for people to
-          gather online together for thrilling fun.
-        </h2>
-        <h2>
-          This creates a space for people to come together and have fun without
-          any limitaions.
-        </h2>
+    <div className='"min-h-screen bg-gradient-to-br from-blue-500 to-purplr-600 flex items-center justify-center p-4'>
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full"
+      >
+        <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+          DSA COURSE ASMISSION
+        </h1>
 
-        <div>
-          <p>Here is the information about the Arena:</p>
-          <ul>
-            <li>
-              It is a platform for people to gather online together for
-              thrilling fun.
-            </li>
-            <User />
-            <li>
-              This creates a space for people to come together and have fun
-              without any limitations.
-            </li>
-          </ul>
-        </div>
+        <input
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          placeholder="Full Name"
+          className="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-line focus:ring-2 focus:ring-blue-500"
+          required
+        />
 
-        <div>
-          <h1>Rules</h1>
-          <h5>
-            All members are requested to respect each other to promote peaceful
-            environment.
-          </h5>
-          <h5>
-            Any form of harassment or discrimination will not be tolerated.
-          </h5>
-          <h5>
-            Follow the guidelines provided by the moderators to ensure a safe
-            and enjoyable experience for everyone.
-          </h5>
-          <h3>Behave yourself to save yourself a spot in here.</h3>
-        </div>
-      </section>
+        <input
+          name="email"
+          type="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="email"
+          className="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        />
+        <input
+          name="phone"
+          value={formData.phone}
+          onChange={handleChange}
+          placeholder="Phone"
+          className="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        />
+        <select
+          name="dsaLevel"
+          value={formData.dsaLevel}
+          onChange={handleChange}
+          className="w-full p-3 border border-gray-300 rounded-lg mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          <option value="beginner">Beginner</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="advanced">Advanced</option>
+        </select>
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+        >
+          Submit Admission
+        </button>
+        {status && (
+          <p className="mt-4 text-center text-sm font-medium">{status}</p>
+        )}
+      </form>
     </div>
   );
-};
+}
 
 export default App;
